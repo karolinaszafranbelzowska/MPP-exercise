@@ -30,13 +30,28 @@ struct Customer
 };
 
 
-int main()
+void printProduct(struct Product p)
+{
+    printf("---------------------------------------\n");
+    printf("Product name: %s \nProduct price: %.2f Euro\n", p.name, p.price);
+    printf("---------------------------------------\n");
+}
+
+void printCustomer(struct Customer c)
+{
+    printf("---------------------------------------\n");
+    printf("Customer name: %s \nCustomer budget: %.2f Euro\n", c.name, c.budget);
+    printf("---------------------------------------\n");
+}
+
+
+int main(void)
 {
     struct Product coke = { "Can of coke", 1.05};
-    printf("The %s costs %.2f Euro\n", coke.name, coke.price);
+    printProduct(coke);
 
     struct Customer karolina = { "Karolina", 100.00, "Euro"};
-    printf("Customer name is %s\n", karolina.name);
+    printCustomer(karolina);
 
     struct ProductStock cokeStock = {coke, 120};
     printf("The shop has %d of the product, which are: %s\n", cokeStock.quantity, cokeStock.product.name);
