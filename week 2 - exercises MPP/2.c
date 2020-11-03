@@ -2,7 +2,7 @@
 
 int main()
 {
-    char name[20]
+    char name[20];
 
     printf("What is your name?");
 
