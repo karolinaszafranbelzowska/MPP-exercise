@@ -32,7 +32,7 @@ struct Customer
 
 };
 
-
+// print Product info
 void printProduct(struct Product p)
 {
     printf("---------------------------------------\n");
@@ -40,6 +40,7 @@ void printProduct(struct Product p)
     printf("---------------------------------------\n");
 }
 
+// print Customer info
 void printCustomer(struct Customer c)
 {
     printf("---------------------------------------\n");
@@ -61,28 +62,40 @@ struct Shop createAndStockShop()
     char * line = NULL;
     size_t len = 0;
     ssize_t read;
+    
 
     fp = fopen("stock.csv","r"); // r = read only
     if (fp == NULL)
         exit(EXIT_FAILURE);
     
-    while ((read = getline(&line, &len, fp)) != -1){
+    
+    while ((read = getline(&line, &len, fp)) != -1)
+    {
+        
         // printf("Retrived line of length %zu:\n", read);
         // printf("%s IS A LINE", line);
-        char * n = strtok(line, ",");
-        char * p = strtok(NULL, ",");
-        char * q = strtok(NULL, ",");
-        int quantity = atoi(q);
-        double price = atof(p);
-        char * name = malloc(sizeof(char) * 50);
-        strcpy(name, n);
-        struct Product product = {name, price};
-        struct ProductStock stockItem = {product, quantity};
-        shop.stock[shop.index++] = stockItem;
 
-        // printf("Name Of Product %s its price %.2f and quantity %d\n", name);
+            char *n = strtok(line, ",");
+            char *p = strtok(NULL, ",");
+            
+            double cash = atoi(c);
+            shop.cash = cash;
+        
+        else
+        {
+            char *n = strtok(line, ",");
+            char *p = strtok(NULL, ",");
+            char *q = strtok(NULL, ",");
+            int quantity = atoi(q);
+            double price = atoi(p);
+            char *name = malloc(sizeof(char) * 50);
+            strcpy(name, n);
+            struct Product product = {name, price};
+            struct ProductStock stockItem = {product, quantity};
+            shop.stock[shop.index++] = stockItem;
+        }
     }
-    
+        
     return shop;
 }
 
@@ -97,18 +110,22 @@ void printShop(struct Shop s)
 
 }
 
-
+// model the entities
 int main(void)
 {
     // struct Product coke = { "Can of coke", 1.05};
+    // printf("The %s costs %.2f\n", coke.name, coke.price);
     // struct Product bread = {"Bread", 0.70};
     
     // printProduct(coke);
 
     // struct Customer karolina = { "Karolina", 100.00, "Euro"};
+    // printf("Customer name is %s\n", karolina.name);
     
 
     // struct ProductStock cokeStock = {coke, 10};
+    // printf("The shop has %d of the product %s\n", cokeStock.quantity, cokeStock.product.name);
+    
     // struct ProductStock breadStock = {bread, 2};
     
     // karolina.shoppingList[karolina.index++] = cokeStock;
